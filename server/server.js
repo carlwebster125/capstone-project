@@ -2,12 +2,21 @@ const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
 // const authRoutes = require("./routes/authRoutes");
-
+require("dotenv").config({
+  path: "../.env",
+});
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT;
+const path = require("path");
 
 app.use(cors());
 // app.use(authRoutes);
+let staticPath = "../client/public";
+
+if (process.env.NODE_ENV === "production") {
+  staticPath = "../client/build";
+}
+app.use(express.static(path.join(__dirname, staticPath)));
 
 // Getting data from API //
 app.get("/pokemon/:name", async (req, res) => {
@@ -21,6 +30,10 @@ app.get("/pokemon/:name", async (req, res) => {
     console.error("Error fetching Pokemon:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, staticPath, "index.html"));
 });
 
 app.listen(PORT, () => {

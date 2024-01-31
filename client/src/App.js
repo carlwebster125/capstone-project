@@ -13,6 +13,9 @@ import {
 } from "react-bootstrap";
 import "./App.css";
 
+const baseUrl = process.env.REACT_APP_BASE_URL
+
+
 function getYouTubeVideoId(url) {
   const match = url.match(/[?&]v=([^?&]+)/);
   return match && match[1];
@@ -45,7 +48,7 @@ function App() {
       setAddToTeamClicked(false);
 
       const response = await axios.get(
-        `http://localhost:8000/pokemon/${pokemonName}`
+        `${baseUrl}/pokemon/${pokemonName}`
       );
       console.log("After axios request", response);
 
@@ -73,7 +76,7 @@ function App() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/login",
+        `${baseUrl}/login`,
         loginFormData
       );
       console.log("Login response:", response.data);
