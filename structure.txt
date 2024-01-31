@@ -1,0 +1,42 @@
+backend
+    config
+        -congig.json
+    controllers
+        -authController.js
+    migrations
+        -...
+        -...
+        -...
+    models
+        -index.js
+        -pokemon.js
+        -team.js
+        -user.js
+    node_modules
+        -...
+    routes
+        -authRoutes.js
+        -teamRoutes.js
+    seeders
+        -...
+package-lock.json
+package.json
+server.js
+//////////////////////////////////
+frontend
+  node_modules
+    -...
+    public
+        images
+            -back.jpg
+        -...
+    src
+        -App.css
+        -App.js
+        -...
+    srg
+        -...
+.gitignore
+-package-lock.json
+-package.json
+-README.md
